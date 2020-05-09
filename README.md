@@ -1,10 +1,12 @@
 # HaloMF
 
-This package contains functions to return a halo multiplicity function, which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures (*halos*) in the Universe.
+This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures (*halos*) in the Universe.
 
-The package currenty contains
+The package contains
 - `tinker08MF(lnν, z, Δm)`: Equation (3, 5-8) and Table 2 of [Tinker et al., ApJ, 688, 709 (2008)](https://iopscience.iop.org/article/10.1086/591439)
 - `tinker10MF(lnν, z, Δm)`: Equation (8-12) and Table 4 of [Tinker et al., ApJ, 724, 878 (2010)](https://iopscience.iop.org/article/10.1088/0004-637X/724/2/878)
+- `bocquetMFhy(lnν, z)`: Equation (3, 4) with parameters of "M200m, Hydro" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
+- `bocquetMFdm(lnν, z)`: Equation (3, 4) with parameters of "M200m, DMonly" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
 
 ## Arguments
 

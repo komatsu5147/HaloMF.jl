@@ -4,7 +4,7 @@
 Halo multiplicity function.
 
 *Reference*: Equation (3, 5-8) and Table 2 of Tinker et al., ApJ, 688, 709 (2008)
-- `tinker08MF(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
+- `tinker08MF(lnν, z, Δm)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
 
 # Arguments
 - `lnν::Real`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
@@ -43,7 +43,7 @@ end
 Halo multiplicity function.
 
 *Reference*: Equation (8-12) and Table 4 of Tinker et al., ApJ, 724, 878 (2010)
-- `tinker10MF(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
+- `tinker10MF(lnν, z, Δm)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
 
 # Arguments
 - `lnν::Real`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within
