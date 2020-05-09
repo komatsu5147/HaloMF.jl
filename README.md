@@ -11,13 +11,15 @@ The package currenty contains
 - `lnν::Real`: natural logarithm of a *threshold*, ν, i.e., `lnν` = log(ν), defined by ``ν ≡ [δc/σ(R,z)]^2``. Here, **δc = 1.6865** and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
     - Note that ν in Tinker et al.'s papers is defined as ν = δc/σ(R,z). Be careful about the power of 2. We follow the notation of Sheth & Tormen (2002; see below) of ν = [δc/σ(R,z)]^2.
 - `z::Real`: redshift.
-- `Δm::Real`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe, ``ρm(z) = ρm(z=0)(1+z)^3``. The mass enclosed within R is given by ``M = (4π/3)ρm(z) Δm R^3(z)``.
+- `Δm::Real`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe, ``ρm(z) = ρm(z=0)(1+z)^3``.
+   - The mass enclosed within R is given by ``M = (4π/3)ρm(z)Δm R^3``.
 
 Note:
-- Functions `tinker08MF` and `tinker08MF` interporate parameters of the halo multiplicity function for ``200 ≤ Δm ≤ 3200``.
-    - Outside this region, the functions assume the parameters for Δm = 200 for Δm < 200 and Δm = 3200 for Δm > 3200.
-- When you wish to compute a halo multiplicity function for an overdensity *Δc* with respect to the **critical** density of the Universe, ``ρc(z) = ρc(z=0)E^2(z)``, use the relation ``Δm = Δc E^z(z)/[Ωm(1+z)^3]`` with a desired value of Δc. - ``Ωm = ρm(z=0)/ρc(z=0)``
-    - ``E^2(z) = Ωm(1+z)^3 + ΩΛ + (1 - Ωm - ΩΛ)(1+z)^2``.
+- Functions `tinker08MF` and `tinker10MF` interporate parameters of the halo multiplicity function in ``200 ≤ Δm ≤ 3200``.
+    - Outside this region, the functions use the parameters of `Δm = 200` for `Δm < 200` and `Δm = 3200` for `Δm > 3200`.
+- When you wish to compute a halo multiplicity function for an overdensity `Δc` with respect to the **critical** density of the Universe, ``ρc(z) = ρc(z=0)E^2(z)``, use the relation ``Δm = Δc E^z(z)/[Ωm(1+z)^3]`` with a desired value of Δc.
+   - ``Ωm = ρm(z=0)/ρc(z=0)``
+   - ``E^2(z) = Ωm(1+z)^3 + ΩΛ + (1 - Ωm - ΩΛ)(1+z)^2``.
 
 ## Classic multiplicity functions
 
@@ -26,11 +28,11 @@ The package als contains some of the classic halo multiplicity functions
 - `stMF(lnν)`: Equation (2) of [Sheth & Tormen, MNRAS, 329, 61 (2002)](https://academic.oup.com/mnras/article/329/1/61/1112679)
 - `jenkinsMF(lnν)`: Equation (B3) of [Jenkins et al., MNRAS, 321, 372 (2001)](https://academic.oup.com/mnras/article/321/2/372/980658)
 
-These multiplicity functions are assumed to be "universal", in the sense that they depend only on ν and do not depend explicitly on redshifts. This assumption was challenged by Tinker et al. (2008), hence the explicit dependence on `z` (see `tinker08MF` and `tinker10MF`).
+These multiplicity functions are assumed to be "universal", in the sense that they depend only on ν and do not depend explicitly on `z`. This assumption was challenged by Tinker et al. (2008), hence the explicit dependence on `z` (see `tinker08MF` and `tinker10MF`).
 
 ## On normalization
 
-Some of the multiplicity functions (`tinker10MF` for `z`=0, `psMF`, `stMF`) are normalized such that
+Some of the multiplicity functions (`tinker10MF` for `z=0`, `psMF`, `stMF`) are normalized such that
 
 ``∫_-∞^∞ dlnν MF(lnν) = 1``
 
@@ -38,13 +40,13 @@ This normalization is equivalent to saying that all the mass in the Universe is 
 
 ``∫_0^∞ dM M dn/dM = ρm``
 
-where ρm is the mean mass density of the (present-day) Universe. This normalization is convenient mathematically but is not necessarily physical; thus, you do not have to pay too much attention to this. It is certainly useful for checking the code.
+where ρm is the mean mass density of the (present-day) Universe. This normalization is convenient mathematically but is not necessarily physical; thus, you do not have to pay too much attention to this. It is certainly useful for checking the code when the MF is normalized.
 
 ## Relation to the halo mass function
 
-The halo mass function, dn/dM, can be computed in the following way.
+The halo mass function, dn/dM, can be computed from the halo multiplicity function, `MF`, in the following way.
 
-1. The comoving number density of halos per lnν is related to the mass function, dn/dM, as
+1. The comoving number density of halos per log(ν) is related to the mass function, dn/dM, as
 
 ``dM M dn/dM = ρm dlnν MF(lnν)``
 
@@ -66,7 +68,7 @@ Now, we can use ``M(R) = (4π/3)ρm R^3`` to obtain
 
 ``dn/dlnR = (3/4π) dlnν/dlnR MF(lnν) / R^3``
 
-with lnν and dlnν/dlnR related to lnR via
+with lnν and dlnν/dlnR related to lnR by
 
 - ``lnν = 2ln(δc) - ln[σ^2(R,z)]``
 
@@ -74,11 +76,13 @@ with lnν and dlnν/dlnR related to lnR via
 
 3. Once dn/dlnR is obtained as a function of R, one can compute dn/dlnM as
 
-``dn/dlnM = (1/3) dn/dlnR = dlnν/dlnR MF(lnν) / (4πR^3)
+``dn/dlnM = (1/3) dn/dlnR = dlnν/dlnR MF(lnν) / (4πR^3)``
 
 with ``M(R) = (4π/3)ρm R^3``, and ``ρm = 2.775e11 (Ωm h^2) M⊙ Mpc^{-3}`` is the present-day mean mass density of the Universe.
 
 ## Example Juia code to compute dn/dM
+
+This example code is avaiable in [examples/MassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/MassFunction.jl)
 
 Below you need to supply a linear matter power spectrum `pk(k_ov_h)` and a function to compute variance of the mass density fluctuation `sigma2(Rh)`. If you do not have them available already, they can be found in [MatterPower.jl](https://github.com/komatsu5147/MatterPower.jl).
 
@@ -88,11 +92,12 @@ using HaloMF
 # We use some functions in https://github.com/komatsu5147/MatterPower.jl
 import MatterPower
 
-# %% Define a function for the linear matter power spectrum (in units of Mpc^3/h^3)
-# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc
-# Here is an example using Einstein & Hu's analytical transfer function in MatterPower.jl
-
+# %% Specify a redshift
 redshift = 0
+
+# %% Define a function to return a linear matter power spectrum (in units of Mpc^3/h^3)
+# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc.
+# Here is an example using Einstein & Hu's analytical transfer function in MatterPower.jl
 
 # Cosmological parameters
 As, ns, kpivot = 2.097e-9, 0.9652, 0.05

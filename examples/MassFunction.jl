@@ -3,11 +3,12 @@ using HaloMF
 # We use some functions in https://github.com/komatsu5147/MatterPower.jl
 import MatterPower
 
-# %% Define a function for the linear matter power spectrum (in units of Mpc^3/h^3)
-# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc
-# Here is an example using Einstein & Hu's analytical transfer function in MatterPower.jl
-
+# %% Specify a redshift
 redshift = 0
+
+# %% Define a function to return a linear matter power spectrum (in units of Mpc^3/h^3)
+# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc.
+# Here is an example using Einstein & Hu's analytical transfer function in MatterPower.jl
 
 # Cosmological parameters
 As, ns, kpivot = 2.097e-9, 0.9652, 0.05
