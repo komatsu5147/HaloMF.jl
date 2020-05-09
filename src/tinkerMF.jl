@@ -4,56 +4,20 @@
 Halo multiplicity function.
 
 *Reference*: Equation (3, 5-8) and Table 2 of Tinker et al., ApJ, 688, 709 (2008)
-
-Note that `tinker08MF(lnν, z)` defined here corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
+- `tinker08MF(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
 
 # Arguments
-- `lnν`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), which is defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
-- `z`: redshift.
-- `Δm`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe.
+- `lnν::Real`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
+- `z::Real`: redshift.
+- `Δm::Real`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe.
 
 Tinker et al. (2008)'s multiplicity function is NOT normalized, i.e,
 
 ``∫_-∞^∞ dlnν tinker08MF(lnν, z, Δm) ≠ 1``
 
-The halo mass function, dn/dM, can be computed in the following way.
-
-1. The comoving number density of halos per lnν is related to the mass function, dn/dM, as
-
-``dM M dn/dM = ρm dlnν tinker08MF(lnν, z, Δm)``
-
-where ρm is the mean mass density of the Universe **today**, as dn/dM is the comoving number density of halos.
-Dividing both sides by dM, one finds
-
-``dn/dlnM = ρm dlnν/dlnM tinker08MF(lnν, z, Δm) / M``
-
-2. ν is more directly related to R, as ``ν = [δc/σ(R,z)]^2``. So, it is more convenient to write dn/dM as
-
-``dn/dlnM = dlnR/dlnM dn/dlnR``
-
-and compute dn/dlnR first, via
-
-``dn/dlnR = ρm dlnν/dlnR tinker08MF(lnν, z, Δm) / M(R)``
-
-Now, we can use ``M(R) = (4π/3)ρm R^3`` to obtain
-
-``dn/dlnR = (3/4π) dlnν/dlnR tinker08MF(lnν, z, Δm) / R^3``
-
-with lnν and dlnν/dlnR related to lnR via
-
-- ``lnν = 2ln(δc) - ln[σ^2(R,z)]``
-
-- ``dlnν/dlnR = -dln[σ^2(R)]/dlnR`` (which is independent of `z`)
-
-3. Once dn/dlnR is obtained as a function of R, one can compute dn/dlnM using ``dlnR/dlnM = 1/3``, and obtain
-
-``dn/dlnM = (1/3) dn/dlnR = dlnν/dlnR `tinker08MF(lnν, z, Δm)` / (4πR^3)``
-
-with ``M(R) = (4π/3)ρm R^3``, and ``ρm = 2.775e11 (Ωm h^2) M⊙ Mpc^{-3}``.
-
 This function is based on [Cosmology Routine Library (CRL)](https://wwwmpa.mpa-garching.mpg.de/~komatsu/crl/).
 """
-function tinker08MF(lnν, z, Δm)
+function tinker08MF(lnν::Real, z::Real, Δm::Real)
     Δ = [200, 300, 400, 600, 800, 1200, 1600, 2400, 3200]
     A0 = [0.186, 0.200, 0.212, 0.218, 0.248, 0.255, 0.260, 0.260, 0.260]
     a0 = [1.47, 1.52, 1.56, 1.61, 1.87, 2.13, 2.30, 2.53, 2.66]
@@ -70,7 +34,7 @@ function tinker08MF(lnν, z, Δm)
     c = cs(Δm)
     ν = exp(lnν)
     σ = 1.6865 / √ν
-    0.5 * A * ((σ / b)^-a + 1) * exp(-c / σ^2)
+    mf = 0.5 * A * ((σ / b)^-a + 1) * exp(-c / σ^2)
 end
 
 """
@@ -79,57 +43,23 @@ end
 Halo multiplicity function.
 
 *Reference*: Equation (8-12) and Table 4 of Tinker et al., ApJ, 724, 878 (2010)
-
-Note that `tinker10MF(lnν, z)` defined here corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
+- `tinker10MF(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
 
 # Arguments
-- `lnν`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), which is defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within
+- `lnν::Real`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within
     a top-hat smoothing of scale R at a redshift `z`.
-- `z`: redshift.
-- `Δm`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe.
+- `z::Real`: redshift.
+- `Δm::Real`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe.
 
 Tinker et al. (2010)'s multiplicity function is normalized at **z=0**, i.e,
 
-``∫_-∞^∞ dlnν tinker10MF(lnν, z, Δm) = 1``
+``∫_-∞^∞ dlnν tinker10MF(lnν, z=0, Δm) = 1``
 
-The halo mass function, dn/dM, can be computed in the following way.
-
-1. The comoving number density of halos per lnν is related to the mass function, dn/dM, as
-
-``dM M dn/dM = ρm dlnν tinker10MF(lnν, z, Δm)``
-
-where ρm is the mean mass density of the Universe **today**, as dn/dM is the comoving number density of halos.
-Dividing both sides by dM, one finds
-
-``dn/dlnM = ρm dlnν/dlnM tinker10MF(lnν, z, Δm) / M``
-
-2. ν is more directly related to R, as ``ν = [δc/σ(R,z)]^2``. So, it is more convenient to write dn/dM as
-
-``dn/dlnM = dlnR/dlnM dn/dlnR``
-
-and compute dn/dlnR first, via
-
-``dn/dlnR = ρm dlnν/dlnR tinker10MF(lnν, z, Δm) / M(R)``
-
-Now, we can use ``M(R) = (4π/3)ρm R^3`` to obtain
-
-``dn/dlnR = (3/4π) dlnν/dlnR tinker10MF(lnν, z, Δm) / R^3``
-
-with lnν and dlnν/dlnR related to lnR via
-
-- ``lnν = 2ln(δc) - ln[σ^2(R,z)]``
-
-- ``dlnν/dlnR = -dln[σ^2(R)]/dlnR`` (which is independent of `z`)
-
-3. Once dn/dlnR is obtained as a function of R, one can compute dn/dlnM using ``dlnR/dlnM = 1/3``, and obtain
-
-``dn/dlnM = (1/3) dn/dlnR = dlnν/dlnR `tinker10MF(lnν, z, Δm)` / (4πR^3)``
-
-with ``M(R) = (4π/3)ρm R^3``, and ``ρm = 2.775e11 (Ωm h^2) M⊙ Mpc^{-3}``.
+It is not normalized for other `z`.
 
 This function is based on [Cosmology Routine Library (CRL)](https://wwwmpa.mpa-garching.mpg.de/~komatsu/crl/).
 """
-function tinker10MF(lnν, z, Δm)
+function tinker10MF(lnν::Real, z::Real, Δm::Real)
     Δ = [200, 300, 400, 600, 800, 1200, 1600, 2400, 3200]
     α0 = [0.368, 0.363, 0.385, 0.389, 0.393, 0.365, 0.379, 0.355, 0.327]
     β0 = [0.589, 0.585, 0.544, 0.543, 0.564, 0.623, 0.637, 0.673, 0.702]
@@ -155,5 +85,5 @@ function tinker10MF(lnν, z, Δm)
     end
     ν = exp(lnν)
     σ = 1.6865 / √ν
-    0.5 * αs(Δm) * (1 + (β^2 * ν)^-ϕ) * ν^η * exp(-γ * ν / 2) * √ν
+    mf = 0.5 * αs(Δm) * (1 + (β^2 * ν)^-ϕ) * ν^η * exp(-γ * ν / 2) * √ν
 end
