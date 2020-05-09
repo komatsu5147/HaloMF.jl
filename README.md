@@ -1,6 +1,6 @@
 # HaloMF
 
-This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures (*halos*) in the Universe.
+This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures, called *halos*, in the Universe.
 
 The package contains
 - `tinker08MF(lnν, z, Δm)`: Equation (3, 5-8) and Table 2 of [Tinker et al., ApJ, 688, 709 (2008)](https://iopscience.iop.org/article/10.1086/591439)
@@ -48,7 +48,7 @@ where ρm is the mean mass density of the (present-day) Universe. This normaliza
 
 The halo mass function, dn/dM, can be computed from the halo multiplicity function, `MF`, in the following way.
 
-1. The comoving number density of halos per log(ν) is related to the mass function, dn/dM, as
+1. The number density of halos per log(ν) is related to the mass function, dn/dM, as
 
 ``dM M dn/dM = ρm dlnν MF(lnν)``
 

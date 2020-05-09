@@ -36,7 +36,7 @@ Halo multiplicity function for Δm = 200.
 
 *Reference*: Equation (3, 4) and Table 2 of Bocquet et al., MNRAS, 456, 2361 (2016)
 - For the parameters of "M200m" and "DMonly" in Table 2
-- `bocquetMFhy(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
+- `bocquetMFdm(lnν, z)` corresponds to f(σ)/2 in this reference, where σ=√(δc/ν).
 
 # Arguments
 - `lnν::Real`: natural logarithm of a threshold, ν, i.e., `lnν` = log(ν), defined by ν ≡ [δc/σ(R,z)]^2. Here, δc = 1.6865 and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
