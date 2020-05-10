@@ -44,7 +44,7 @@ Rh = cbrt(Mh * 3 / 4π / ρc / Ωm)
 # %% Compute variance of the mass density fluctuation and its derivative
 # Here is an example using functions in MatterPower.jl
 σ2 = MatterPower.sigma2(pk, Rh)
-dlnσ2dlnRh = Rh * MatterPower.dsigma2dRh(pk, Rh) / σ2
+dlnσ2dlnRh = Rh * MatterPower.dsigma2dR(pk, Rh) / σ2
 
 # %% Finally, the mass function per logarithmic mass interval, dn/dlnMh, in units of h^3 Mpc^-3
 # Specify the desired value of the overdensity

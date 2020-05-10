@@ -84,10 +84,11 @@ with ``M(R) = (4π/3)ρm R^3``, and ``ρm = 2.775e11 (Ωm h^2) M⊙ Mpc^{-3}`` i
 
 ## Example Juia code to compute dn/dM
 
-This example code is avaiable in [examples/MassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/MassFunction.jl)
+This example code is avaiable in [examples/MassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/MassFunction.jl
 
-Below you need to supply a linear matter power spectrum `pk(k_ov_h)` and a function to compute variance of the mass density fluctuation `sigma2(Rh)`. If you do not have them available already, they can be found in [MatterPower.jl](https://github.com/komatsu5147/MatterPower.jl).
+Below you need to supply a linear matter power spectrum `pk(k)` and a function to compute variance of the mass density fluctuation `sigma2(R)`. If you do not have them available already, they can be found in [MatterPower.jl](https://github.com/komatsu5147/MatterPower.jl).
 
+If you would like to generate a nice figure showing dn/dlnM as a function of M, take a look at [examples/PlotMassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/PlotMassFunction.jl
 ```
 using HaloMF
 
@@ -135,7 +136,7 @@ Rh = cbrt(Mh * 3 / 4π / ρc / Ωm)
 # %% Compute variance of the mass density fluctuation and its derivative
 # Here is an example using functions in MatterPower.jl
 σ2 = MatterPower.sigma2(pk, Rh)
-dlnσ2dlnRh = Rh * MatterPower.dsigma2dRh(pk, Rh) / σ2
+dlnσ2dlnRh = Rh * MatterPower.dsigma2dR(pk, Rh) / σ2
 
 # %% Finally, the mass function per logarithmic mass interval, dn/dlnMh, in units of h^3 Mpc^-3
 # Specify the desired value of the overdensity
