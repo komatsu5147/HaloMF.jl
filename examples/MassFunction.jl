@@ -7,7 +7,7 @@ import MatterPower
 redshift = 0
 
 # %% Define a function to return a linear matter power spectrum (in units of Mpc^3/h^3)
-# as a function of the comoving wavenumber, k_ov_h, in units of h/Mpc.
+# as a function of the comoving wavenumber, kovh, in units of h/Mpc.
 # Here is an example using Einstein & Hu's analytical transfer function in MatterPower.jl
 
 # Cosmological parameters
@@ -22,16 +22,16 @@ sol = MatterPower.setup_growth(Ωm, ΩΛ)
 a = 1 / (1 + redshift)
 D1 = sol(a)[1]
 
-pk(k_ov_h) =
+pk(kovh) =
    D1^2 *
-   As * (k_ov_h * h0 / kpivot)^(ns - 1) *
-   (2 * k_ov_h^2 * 2998^2 / 5 / Ωm)^2 *
-   MatterPower.t_nowiggle(k_ov_h * h0, ωm, fb)^2 *
-   2 * π^2 / k_ov_h^3
+   As * (kovh * h0 / kpivot)^(ns - 1) *
+   (2 * kovh^2 * 2998^2 / 5 / Ωm)^2 *
+   MatterPower.t_nowiggle(kovh * h0, ωm, fb)^2 *
+   2 * π^2 / kovh^3
 
 # %% Alternatively you may read in pre-computed data and define a spline function
 # using Dierckx
-# pk = Spline1D(tabulated_k_ov_h, tabulated_power_spectrum)
+# pk = Spline1D(tabulated_kovh, tabulated_power_spectrum)
 
 # %% Spefify a halo mass, Mh, in units of M⊙/h (M⊙ is the mass of Sun)
 Mh = 1e14
