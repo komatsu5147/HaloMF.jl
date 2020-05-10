@@ -84,11 +84,11 @@ with ``M(R) = (4π/3)ρm R^3``, and ``ρm = 2.775e11 (Ωm h^2) M⊙ Mpc^{-3}`` i
 
 ## Example Juia code to compute dn/dM
 
-This example code is avaiable in [examples/MassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/MassFunction.jl
+This example code is avaiable in [examples/MassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/MassFunction.jl)
 
 Below you need to supply a linear matter power spectrum `pk(k)` and a function to compute variance of the mass density fluctuation `sigma2(R)`. If you do not have them available already, they can be found in [MatterPower.jl](https://github.com/komatsu5147/MatterPower.jl).
 
-If you would like to generate a nice figure showing dn/dlnM as a function of M, take a look at [examples/PlotMassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/PlotMassFunction.jl
+If you would like to generate a nice figure showing dn/dlnM as a function of M, take a look at [examples/PlotMassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/PlotMassFunction.jl)
 ```
 using HaloMF
 
