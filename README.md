@@ -11,7 +11,7 @@ The package contains
 ## Arguments
 
 - `lnν::Real`: natural logarithm of a *threshold*, ν, i.e., `lnν` = log(ν), defined by ``ν ≡ [δc/σ(R,z)]^2``. Here, **δc = 1.6865** and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
-    - Note that ν in Tinker et al.'s papers is defined as ν = δc/σ(R,z). Be careful about the power of 2. We follow the notation of Sheth & Tormen (2002; see below) of ν = [δc/σ(R,z)]^2.
+    - Note that ν in Tinker et al.'s papers is defined as ν = δc/σ(R,z). Be careful about the power of 2. We follow the notation of Sheth & Tormen (2002; see below) of ν = [δc/σ(R,z)]<sup>2</sup>.
 - `z::Real`: redshift.
 - `Δm::Real`: overdensity within a spherical region of radius R, whose mean density is equal to Δm times the mean **mass** density of the Universe, ``ρm(z) = ρm(z=0)(1+z)^3``.
    - The mass enclosed within R is given by ``M = (4π/3)ρm(z)Δm R^3``.
