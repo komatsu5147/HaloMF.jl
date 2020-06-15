@@ -89,7 +89,7 @@ This example code is avaiable in [examples/MassFunction.jl](https://github.com/k
 Below you need to supply a linear matter power spectrum `pk(k)` and a function to compute variance of the mass density fluctuation `sigma2(R)`. If you do not have them available already, they can be found in [MatterPower.jl](https://github.com/komatsu5147/MatterPower.jl).
 
 If you would like to generate a nice figure showing dn/dlnM as a function of M, take a look at [examples/PlotMassFunction.jl](https://github.com/komatsu5147/HaloMF.jl/blob/master/examples/PlotMassFunction.jl).
-```
+```Julia
 using HaloMF
 
 # We use some functions in https://github.com/komatsu5147/MatterPower.jl
