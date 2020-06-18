@@ -27,6 +27,7 @@ function tinker08MF(lnν::Real, z::Real, Δm::Real)
     as = Spline1D(Δ, a0)
     bs = Spline1D(Δ, b0)
     cs = Spline1D(Δ, c0)
+    α = 10^(-(0.75 / log10(Δm / 75))^1.2)
     if z < 3
         A = As(Δm) * (1 + z)^-0.14
         a = as(Δm) * (1 + z)^-0.06
@@ -36,7 +37,6 @@ function tinker08MF(lnν::Real, z::Real, Δm::Real)
         a = as(Δm) * 4^-0.06
         b = bs(Δm) * 4^-α
     end
-    α = 10^(-(0.75 / log10(Δm / 75))^1.2)
     c = cs(Δm)
     ν = exp(lnν)
     σ = 1.6865 / √ν
