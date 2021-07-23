@@ -7,7 +7,7 @@ This package contains functions to return a **halo multiplicity function** (henc
 From the Julia REPL, run
 ```Julia
 using Pkg
-Pkg.add("https://github.com/komatsu5147/HaloMF.jl")
+Pkg.add(url="https://github.com/komatsu5147/HaloMF.jl")
 ```
 ## Contents
 
