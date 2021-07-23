@@ -2,6 +2,15 @@
 
 This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures, called *halos*, in the Universe.
 
+## Installation
+
+From the Julia REPL, run
+```Julia
+using Pkg
+Pkg.add("https://github.com/komatsu5147/HaloMF.jl")
+```
+## Contents
+
 The package contains
 - `tinker08MF(lnν, z, Δm)`: Equation (3, 5-8) and Table 2 of [Tinker et al., ApJ, 688, 709 (2008)](https://iopscience.iop.org/article/10.1086/591439)
 - `tinker10MF(lnν, z, Δm)`: Equation (8-12) and Table 4 of [Tinker et al., ApJ, 724, 878 (2010)](https://iopscience.iop.org/article/10.1088/0004-637X/724/2/878)
