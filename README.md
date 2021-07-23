@@ -17,7 +17,7 @@ The package contains
 - `bocquetMFhy(lnν, z)`: Equation (3, 4) with parameters of "M200m, Hydro" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
 - `bocquetMFdm(lnν, z)`: Equation (3, 4) with parameters of "M200m, DMonly" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
 
-## Arguments
+### Arguments
 
 - `lnν::Real`: natural logarithm of a *threshold*, ν, i.e., `lnν` = log(ν), defined by ``ν ≡ [δc/σ(R,z)]^2``. Here, **δc = 1.6865** and σ(R,z) is the r.m.s. mass fluctuation within a top-hat smoothing of scale R at a redshift `z`.
     - Note that ν in Tinker et al.'s papers is defined as ν = δc/σ(R,z). Be careful about the power of 2. We follow the notation of Sheth & Tormen (2002; see below) of ν = [δc/σ(R,z)]<sup>2</sup>.
