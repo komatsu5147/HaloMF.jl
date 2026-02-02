@@ -1,6 +1,6 @@
 # HaloMF
 
-This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures, called *halos*, in the Universe.
+This package contains functions to return a **halo multiplicity function** (hence the name, "HaloMF"), which is the fundamental building block for computing the (comoving) number density of gravitationally collapsed structures, called *halos*, in the Universe. The package also contains functions to return linear and nonlinear **halo bias** parameters, which describe how halos cluster relative to the underlying matter distribution.
 
 ## Installation
 
@@ -16,6 +16,8 @@ The package contains
 - `tinker10MF(lnν, z, Δm)`: Equation (8-12) and Table 4 of [Tinker et al., ApJ, 724, 878 (2010)](https://iopscience.iop.org/article/10.1088/0004-637X/724/2/878)
 - `bocquetMFhy(lnν, z)`: Equation (3, 4) with parameters of "M200m, Hydro" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
 - `bocquetMFdm(lnν, z)`: Equation (3, 4) with parameters of "M200m, DMonly" in Table 2 of [Bocquet et al., MNRAS, 456, 2361 (2016)](https://academic.oup.com/mnras/article/456/3/2361/1085699)
+- `tinker10Bias(lnν, Δm)`: Equation (6) and Table 2 of [Tinker et al., ApJ, 724, 878 (2010)](https://iopscience.iop.org/article/10.1088/0004-637X/724/2/878)
+- `stBias(lnν)` (or `stBias1(lnν)`), `stBias2(lnν)`, `stBias3(lnν)`: Equation (68-70) of [Cooray & Sheth, Phys. Rept., 372, 1 (2002)](https://www.sciencedirect.com/science/article/abs/pii/S0370157302002764) with typos corrected.
 
 ### Arguments
 
@@ -52,6 +54,17 @@ This normalization is equivalent to saying that all the mass in the Universe is 
 ``∫_0^∞ dM M dn/dM = ρm``
 
 where ρm is the mean mass density of the (present-day) Universe. This normalization is convenient mathematically but is not necessarily physical; thus, you do not have to pay too much attention to this. It is certainly useful for checking the code when the MF is normalized.
+
+The linear bias parameters (`tinker10Bias` and `stBias`) are also normalized such that
+
+- ``∫_-∞^∞ dlnν tinker10Bias(lnν, Δm) * tinker10MF(lnν, 0, Δm) = 1``
+- ``∫_-∞^∞ dlnν stBias(lnν) * stMF(lnν) = 1``
+
+
+The nonlinear bias parameters (`stBias2` and `stBias3`) satisfy
+
+- ``∫_-∞^∞ dlnν stBias2(lnν) * stMF(lnν) = 0``
+- ``∫_-∞^∞ dlnν stBias3(lnν) * stMF(lnν) = 0``
 
 ## Relation to the halo mass function
 
