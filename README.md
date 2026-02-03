@@ -36,12 +36,22 @@ Note:
 
 ## Classic multiplicity functions
 
-The package als contains some of the classic halo multiplicity functions
+The package also contains some of the classic halo multiplicity functions
 - `psMF(lnν)`: [Press & Schechter, 187, 425 (1974)](http://articles.adsabs.harvard.edu/pdf/1974ApJ...187..425P)
 - `stMF(lnν)`: Equation (2) of [Sheth & Tormen, MNRAS, 329, 61 (2002)](https://academic.oup.com/mnras/article/329/1/61/1112679)
 - `jenkinsMF(lnν)`: Equation (B3) of [Jenkins et al., MNRAS, 321, 372 (2001)](https://academic.oup.com/mnras/article/321/2/372/980658)
 
 These multiplicity functions are assumed to be "universal", in the sense that they depend only on ν and do not depend explicitly on `z`. This assumption was challenged by Tinker et al. (2008), hence the explicit dependence on `z` (see `tinker08MF` and `tinker10MF`).
+
+## Halo bias parameters from the peak-background split approximation
+
+The halo bias parameters can be calculated from a halo multiplicity function using the so-called peak-background split (PBS) approximation. See [Desjacques, Jeong & Schmdit, Phys. Rept., 733, 1 (2018)](https://www.sciencedirect.com/science/article/pii/S0370157317304192).
+
+The package contains 
+- `pbsBias(lnν, MF)` and  `pbsBias1(lnν, MF)`: The linear bias parameter from the PBS.
+- `pbsBias2(lnν, MF)`: The second-order bias parameter from the PBS.
+
+Here, `MF(lnν)` is any of the halo multiplicity functions from the above list. For example, ``pbsBias(lnν, stMF)`` and ``pbsBias(lnν, x -> tinker10MF(x, z, Δm))``.
 
 ## On normalization
 
@@ -55,7 +65,7 @@ This normalization is equivalent to saying that all the mass in the Universe is 
 
 where ρm is the mean mass density of the (present-day) Universe. This normalization is convenient mathematically but is not necessarily physical; thus, you do not have to pay too much attention to this. It is certainly useful for checking the code when the MF is normalized.
 
-The linear bias parameters (`tinker10Bias` and `stBias`) are also normalized such that
+The linear bias parameters (`tinker10Bias`, `stBias`) are also normalized such that
 
 - ``∫_-∞^∞ dlnν tinker10Bias(lnν, Δm) * tinker10MF(lnν, 0, Δm) = 1``
 - ``∫_-∞^∞ dlnν stBias(lnν) * stMF(lnν) = 1``
@@ -65,6 +75,8 @@ The nonlinear bias parameters (`stBias2` and `stBias3`) satisfy
 
 - ``∫_-∞^∞ dlnν stBias2(lnν) * stMF(lnν) = 0``
 - ``∫_-∞^∞ dlnν stBias3(lnν) * stMF(lnν) = 0``
+
+The halo bias parameters from the peak-background split approximation also satisfy the above relationships by construction.
 
 ## Relation to the halo mass function
 
