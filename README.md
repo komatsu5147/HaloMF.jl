@@ -45,11 +45,11 @@ These multiplicity functions are assumed to be "universal", in the sense that th
 
 ## Halo bias parameters from the peak-background split approximation
 
-The halo bias parameters can be calculated from a halo multiplicity function using the so-called peak-background split (PBS) approximation. See [Desjacques, Jeong & Schmdit, Phys. Rept., 733, 1 (2018)](https://www.sciencedirect.com/science/article/pii/S0370157317304192).
+The halo bias parameters can be calculated from a halo multiplicity function using the so-called peak-background split (PBS) approximation. See Equation (2.16) and Section 3.3 of [Desjacques, Jeong & Schmdit, Phys. Rept., 733, 1 (2018)](https://www.sciencedirect.com/science/article/pii/S0370157317304192).
 
 The package contains 
 - `pbsBias(lnν, MF)` and  `pbsBias1(lnν, MF)`: The linear bias parameter from the PBS.
-- `pbsBias2(lnν, MF)`: The second-order bias parameter from the PBS.
+- `pbsBias2(lnν, MF)` and `pbsBias3(lnν, MF)`: The second- and third-order bias parameters from the PBS.
 
 Here, `MF(lnν)` is any of the halo multiplicity functions from the above list. For example, ``pbsBias(lnν, stMF)`` and ``pbsBias(lnν, x -> tinker10MF(x, z, Δm))``.
 

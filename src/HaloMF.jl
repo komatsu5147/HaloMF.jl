@@ -5,7 +5,7 @@ export bocquetMFhy, bocquetMFdm
 export psMF, stMF, jenkinsMF
 export stBias, stBias1, stBias2, stBias3
 export tinker10Bias
-export pbsBias, pbsBias1, pbsBias2
+export pbsBias, pbsBias1, pbsBias2, pbsBias3
 include("tinkerMF.jl")
 include("bocquetMF.jl")
 include("classicMF.jl")
